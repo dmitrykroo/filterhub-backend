@@ -35,7 +35,7 @@ class PostDetailsView(CreateAPIView):
             serializer.save()
             return JsonResponse(serializer.data, safe=False)
         else:
-            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(status=status.HTTP_400_BAD_REQUEST, data={"status": "error"})
 
     def patch(self, request, pk):
         post = get_object_or_404(self.get_queryset(), pk=pk)
@@ -48,12 +48,12 @@ class PostDetailsView(CreateAPIView):
             serializer.save()
             return JsonResponse(serializer.data, safe=False)
         else:
-            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(status=status.HTTP_400_BAD_REQUEST, data={"status": "error"})
 
     def delete(self, request, pk):
         post = get_object_or_404(self.get_queryset(), pk=pk)
         if post.user.pk != request.user.pk:
-            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(status=status.HTTP_400_BAD_REQUEST, data={"status": "error"})
 
         post.delete()
         return JsonResponse(data="OK", safe=False)
@@ -74,4 +74,4 @@ class UserDetailsView(CreateAPIView):
             serializer.save()
             return JsonResponse(serializer.data, safe=False)
         else:
-            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(status=status.HTTP_400_BAD_REQUEST, data={"status": "error"})
