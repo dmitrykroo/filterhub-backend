@@ -138,3 +138,8 @@ REST_REGISTRATION = {
     'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
     'RESET_PASSWORD_VERIFICATION_ENABLED': False,
 }
+
+
+ALLOWED_HOSTS = [
+    'filterhub.herokuapp.com'
+]
